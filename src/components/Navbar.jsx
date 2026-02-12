@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="w-full flex items-center justify-between pad-x">
           {/* Logo — left aligned, asymmetric */}
           <Link to="/" className="flex items-center gap-3 relative z-50">
-            <img src={logo} alt="Caspani" className="h-9 md:h-10 w-auto" />
+            <img src={logo} alt="Caspani" title="Caspani Pavimenti" loading="eager" width={40} height={40} className="h-9 md:h-10 w-auto" />
             <div className="hidden sm:block">
               <span className={`font-heading font-bold text-[13px] tracking-tight leading-none block transition-colors duration-500 ${
                 isOpen ? 'text-cream' : scrolled ? 'text-cream' : 'text-white'

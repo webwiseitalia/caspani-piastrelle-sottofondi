@@ -114,6 +114,10 @@ function ServiceBlock({ service, index }) {
             <img
               src={service.img}
               alt={service.title}
+              title={service.title}
+              loading="lazy"
+              width={800}
+              height={550}
               className="w-full h-full object-cover"
             />
           </div>
@@ -196,7 +200,7 @@ export default function Servizi() {
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative min-h-[65vh] overflow-hidden bg-dark">
         <div className="absolute inset-0">
-          <img src={foto2} alt="Servizi Caspani" className="w-full h-full object-cover opacity-40" />
+          <img src={foto2} alt="Servizi Caspani" title="Servizi di posa pavimenti e rivestimenti Caspani" loading="eager" width={1920} height={1080} className="w-full h-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-b from-dark/20 via-transparent to-dark" />
         </div>
         <div className="relative z-10 min-h-[65vh] flex flex-col justify-end pad-x pb-14 md:pb-20">
@@ -282,7 +286,7 @@ export default function Servizi() {
 
           <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-0">
             <div ref={ctaImgRef} className="absolute inset-0">
-              <img src={foto2} alt="Cantiere Caspani" className="w-full h-full object-cover" />
+              <img src={foto2} alt="Cantiere Caspani" title="Cantiere e lavori di posa Caspani" loading="lazy" width={800} height={1000} className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

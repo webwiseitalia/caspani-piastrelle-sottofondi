@@ -193,6 +193,10 @@ export default function Galleria() {
                   <img
                     src={photo.src}
                     alt={photo.alt}
+                    title={photo.alt}
+                    loading="lazy"
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -244,7 +248,7 @@ export default function Galleria() {
           </button>
 
           <div ref={lightboxImgRef} className="max-w-5xl max-h-[80vh] w-full mx-16 md:mx-24" onClick={(e) => e.stopPropagation()}>
-            <img src={lightbox.src} alt={lightbox.alt} className="w-full h-full object-contain" />
+            <img src={lightbox.src} alt={lightbox.alt} title={lightbox.alt} loading="eager" width={1200} height={800} className="w-full h-full object-contain" />
             <div className="mt-5 flex items-center gap-4">
               <span className="bg-accent text-white text-[9px] font-heading font-bold uppercase tracking-[0.2em] px-3 py-1">
                 {categoryLabels[lightbox.category]}
@@ -280,7 +284,7 @@ export default function Galleria() {
           </div>
 
           <div className="lg:col-span-5 relative h-64 lg:h-auto overflow-hidden">
-            <img src={foto7} alt="Progetto Caspani" className="w-full h-full object-cover" />
+            <img src={foto7} alt="Progetto Caspani" title="Progetto Caspani Pavimenti" loading="lazy" width={800} height={600} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/30 to-transparent hidden lg:block" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent lg:hidden" />
           </div>

@@ -87,20 +87,20 @@ export default function Home() {
   useSplitReveal(ctaHeadingRef)
   useParallax(ctaImgRef, { y: -100 })
 
-  /* Hero parallax */
+  /* Hero animations */
   useEffect(() => {
     if (!heroRef.current) return
     const ctx = gsap.context(() => {
-      gsap.to('.home-hero-bg', {
-        yPercent: 25,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2,
-        },
-      })
+      /* Main hero image — scale reveal */
+      gsap.fromTo('.home-hero-bg',
+        { scale: 1.08, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.6, ease: 'power3.out', delay: 0.2 }
+      )
+      /* Small overlapping image — slide up */
+      gsap.fromTo('.hero-small-img',
+        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power4.out', delay: 0.8 }
+      )
       /* Hero subtitle reveal */
       gsap.fromTo('.hero-subtitle',
         { opacity: 0, y: 30 },
@@ -111,68 +111,127 @@ export default function Home() {
         { opacity: 0, y: 25 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', delay: 1.2, stagger: 0.15 }
       )
+      /* Parallax on scroll for main image */
+      gsap.to('.home-hero-bg', {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      })
     }, heroRef)
     return () => ctx.revert()
   }, [])
 
   return (
     <>
-      {/* ═══════════════ 1. HERO — Cinematic full-bleed ═══════════════ */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] overflow-hidden bg-dark">
-        <div className="absolute inset-0">
-          <img
-            src={foto8}
-            alt="Posa pavimenti"
-            className="home-hero-bg w-full h-full object-cover will-change-transform scale-110 opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-dark/40 via-transparent to-dark" />
-          {/* Construction stripe overlay */}
-          <div className="absolute inset-0 pattern-stripes-dark opacity-50" />
+      {/* ═══════════════ 1. HERO — Asymmetric editorial grid ═══════════════ */}
+      <section ref={heroRef} className="relative bg-dark pattern-blueprint-dark overflow-hidden">
+        {/* Subtle diagonal accent line */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-0 right-[35%] w-px h-full bg-gradient-to-b from-transparent via-accent/10 to-transparent hidden lg:block" />
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-accent/20 via-transparent to-transparent" />
         </div>
 
-        {/* Asymmetric hero content */}
-        <div className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-24">
-          <div className="pad-x">
-            <span className="inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-6 md:mb-8">
-              Aprica — Provincia di Sondrio
-            </span>
+        <div className="relative z-10 pad-x-lg pt-24 md:pt-32 lg:pt-36 pb-14 md:pb-18">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
 
-            <h1
-              ref={heroHeadingRef}
-              className="fluid-display font-heading font-bold text-cream max-w-[90vw] md:max-w-[70vw] lg:max-w-[55vw]"
-            >
-              Pavimenti, Rivestimenti & Sottofondi
-            </h1>
+            {/* Left column — Text content */}
+            <div className="lg:col-span-5 lg:row-span-2 flex flex-col justify-center lg:pt-8">
+              <span className="hero-subtitle inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-6 md:mb-10">
+                Aprica — Provincia di Sondrio
+              </span>
 
-            <p className="hero-subtitle font-body text-cream/50 text-base md:text-lg max-w-md mt-6 md:mt-8 leading-relaxed md:ml-[8vw]">
-              Esperienza e qualità dal cuore della Valtellina. Posa professionale,
-              materiali certificati e assistenza completa.
-            </p>
-
-            <div className="flex flex-wrap gap-4 md:gap-5 mt-8 md:mt-10 md:ml-[8vw]">
-              <Link
-                to="/contatti"
-                className="hero-cta inline-flex items-center gap-3 bg-accent text-white font-heading font-bold text-[11px] uppercase tracking-[0.15em] px-8 py-4 hover:bg-accent-dark transition-colors duration-300"
+              <h1
+                ref={heroHeadingRef}
+                className="fluid-h1 font-heading font-bold text-cream mb-6 md:mb-8"
               >
-                Richiedi Preventivo
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                </svg>
-              </Link>
-              <Link
-                to="/servizi"
-                className="hero-cta inline-flex items-center gap-3 border border-cream/20 text-cream font-heading font-bold text-[11px] uppercase tracking-[0.15em] px-8 py-4 hover:bg-cream/10 transition-all duration-300"
-              >
-                I Nostri Servizi
-              </Link>
+                Pavimenti, Rivestimenti & Sottofondi
+              </h1>
+
+              <p className="hero-subtitle font-body text-cream/45 text-sm md:text-base max-w-sm leading-relaxed mb-8 md:mb-10">
+                Esperienza e qualità dal cuore della Valtellina. Posa professionale,
+                materiali certificati e assistenza completa.
+              </p>
+
+              <div className="flex flex-wrap gap-4 md:gap-5">
+                <Link
+                  to="/contatti"
+                  className="hero-cta inline-flex items-center gap-3 bg-accent text-white font-heading font-bold text-[11px] uppercase tracking-[0.15em] px-8 py-4 hover:bg-accent-dark transition-colors duration-300"
+                >
+                  Richiedi Preventivo
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </Link>
+                <Link
+                  to="/servizi"
+                  className="hero-cta inline-flex items-center gap-3 border border-cream/20 text-cream font-heading font-bold text-[11px] uppercase tracking-[0.15em] px-8 py-4 hover:bg-cream/10 transition-all duration-300"
+                >
+                  I Nostri Servizi
+                </Link>
+              </div>
+
+              {/* Floating accent number */}
+              <div className="hidden lg:block mt-10">
+                <span className="font-heading font-bold text-[4.5rem] leading-none text-accent/8">20+</span>
+                <span className="block font-heading font-semibold text-[10px] uppercase tracking-[0.3em] text-cream/20 mt-1">
+                  Anni di Esperienza
+                </span>
+              </div>
+            </div>
+
+            {/* Right column — Staggered images */}
+            <div className="lg:col-span-7 relative">
+              {/* Main large image */}
+              <div ref={heroImgRef} className="overflow-hidden aspect-[4/3] md:aspect-[4/3] lg:aspect-[4/3] w-full lg:w-[85%] lg:ml-auto">
+                <img
+                  src={foto9}
+                  alt="Posa pavimenti e rivestimenti"
+                  title="Posa pavimenti professionale - Caspani Pavimenti"
+                  loading="eager"
+                  width={800}
+                  height={1000}
+                  className="home-hero-bg w-full h-full object-cover will-change-transform"
+                />
+              </div>
+
+              {/* Smaller overlapping photo with accent border */}
+              <div className="hero-small-img hidden md:block absolute -bottom-8 lg:-bottom-12 left-0 lg:-left-6 w-[40%] lg:w-[35%] z-20">
+                <div className="border-2 border-accent p-1.5 bg-dark shadow-2xl">
+                  <div className="overflow-hidden aspect-[4/3]">
+                    <img
+                      src={foto6}
+                      alt="Pavimento effetto legno"
+                      title="Pavimento effetto legno - Caspani Pavimenti"
+                      loading="eager"
+                      width={600}
+                      height={450}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                {/* Corner marks on small image */}
+                <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-accent/30" />
+                <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-accent/30" />
+              </div>
+
+              {/* Decorative vertical text */}
+              <div className="absolute top-8 -left-2 lg:left-4 hidden lg:flex items-center gap-3 -rotate-90 origin-left">
+                <div className="w-12 h-px bg-accent/40" />
+                <span className="font-heading font-semibold text-[9px] uppercase tracking-[0.4em] text-cream/20 whitespace-nowrap">
+                  Dal 2004 — Valtellina
+                </span>
+              </div>
             </div>
           </div>
-
-          {/* Floating accent number */}
-          <div className="absolute right-[var(--gutter)] bottom-16 md:bottom-24 hidden lg:block">
-            <span className="font-heading font-bold text-[8rem] leading-none text-accent/10">20+</span>
-          </div>
         </div>
+
+        {/* Bottom decorative line */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-cream/5" />
       </section>
 
       {/* ═══════════════ 2. CHI SIAMO — Broken grid ═══════════════ */}
@@ -218,6 +277,10 @@ export default function Home() {
                 <img
                   src={foto7}
                   alt="Rivestimento bagno professionale"
+                  title="Rivestimento bagno - Caspani Pavimenti"
+                  loading="lazy"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -225,6 +288,10 @@ export default function Home() {
                 <img
                   src={foto4}
                   alt="Massetto autolivellante"
+                  title="Massetto autolivellante - Caspani Pavimenti"
+                  loading="lazy"
+                  width={600}
+                  height={600}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -275,7 +342,7 @@ export default function Home() {
                 </div>
                 <div className="md:col-span-2 hidden md:flex justify-center">
                   <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
-                    <img src={foto7} alt="" className="w-full h-full object-cover" />
+                    <img src={foto7} alt="Posa pavimenti e rivestimenti" title="Posa pavimenti e rivestimenti" loading="lazy" width={208} height={152} className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="md:col-span-3">
@@ -304,7 +371,7 @@ export default function Home() {
                 </div>
                 <div className="md:col-span-2 hidden md:flex justify-center">
                   <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
-                    <img src={foto2} alt="" className="w-full h-full object-cover" />
+                    <img src={foto2} alt="Sottofondi e massetti" title="Sottofondi e massetti" loading="lazy" width={208} height={152} className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="md:col-span-3">
@@ -333,7 +400,7 @@ export default function Home() {
                 </div>
                 <div className="md:col-span-2 hidden md:flex justify-center">
                   <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
-                    <img src={foto5} alt="" className="w-full h-full object-cover" />
+                    <img src={foto5} alt="Fornitura e vendita pavimenti" title="Fornitura e vendita pavimenti" loading="lazy" width={208} height={152} className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="md:col-span-3">
@@ -414,21 +481,21 @@ export default function Home() {
         {/* Full-width mosaic — top row 3, bottom row 2 */}
         <div className="px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-1.5">
           <div ref={galleryImg1Ref} className="overflow-hidden aspect-[16/10] group cursor-pointer">
-            <img src={foto8} alt="Posa pavimento bagno" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img src={foto8} alt="Posa pavimento bagno" title="Posa pavimento bagno" loading="lazy" width={800} height={500} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>
           <div ref={galleryImg2Ref} className="overflow-hidden aspect-[16/10] group cursor-pointer">
-            <img src={foto10} alt="Cantiere posa" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img src={foto10} alt="Cantiere posa" title="Cantiere posa pavimenti" loading="lazy" width={800} height={500} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>
           <div ref={galleryImg3Ref} className="col-span-2 md:col-span-1 overflow-hidden aspect-[16/10] group cursor-pointer">
-            <img src={foto5} alt="Showroom" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img src={foto5} alt="Showroom pavimenti" title="Showroom pavimenti Caspani" loading="lazy" width={800} height={500} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>
         </div>
         <div className="px-4 md:px-8 grid grid-cols-2 gap-1 md:gap-1.5 mt-1 md:mt-1.5 pb-24 md:pb-40">
           <div ref={galleryImg4Ref} className="overflow-hidden aspect-[16/9] group cursor-pointer">
-            <img src={foto9} alt="Cantiere invernale" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img src={foto9} alt="Cantiere invernale" title="Cantiere invernale Caspani" loading="lazy" width={800} height={450} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>
           <div className="overflow-hidden aspect-[16/9] group cursor-pointer relative">
-            <img src={foto2} alt="Massetto cantiere" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img src={foto2} alt="Massetto cantiere" title="Realizzazione massetto" loading="lazy" width={800} height={450} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
             <div className="absolute inset-0 bg-dark/30 group-hover:bg-dark/50 transition-colors duration-300 flex items-center justify-center">
               <Link
                 to="/galleria"
@@ -495,6 +562,10 @@ export default function Home() {
               ref={ctaImgRef}
               src={foto6}
               alt="Cantiere Caspani"
+              title="Cantiere Caspani Pavimenti"
+              loading="lazy"
+              width={800}
+              height={1000}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

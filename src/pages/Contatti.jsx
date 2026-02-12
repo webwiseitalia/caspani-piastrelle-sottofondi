@@ -75,7 +75,7 @@ export default function Contatti() {
           </div>
 
           <div className="lg:col-span-6 relative min-h-[280px] lg:min-h-[inherit]">
-            <img src={foto2} alt="Contatti Caspani" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={foto2} alt="Contatti Caspani" title="Contatti Caspani Pavimenti" loading="eager" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
       </section>

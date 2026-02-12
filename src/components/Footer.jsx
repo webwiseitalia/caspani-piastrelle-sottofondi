@@ -60,7 +60,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:max-w-xs shrink-0">
               <div className="flex items-center gap-3 mb-5">
-                <img src={logo} alt="Caspani Pavimenti" className="h-9 w-auto" />
+                <img src={logo} alt="Caspani Pavimenti" title="Caspani Pavimenti" loading="lazy" width={36} height={36} className="h-9 w-auto" />
                 <span className="font-heading font-bold text-[13px] tracking-tight text-cream">
                   Caspani Pavimenti
                 </span>

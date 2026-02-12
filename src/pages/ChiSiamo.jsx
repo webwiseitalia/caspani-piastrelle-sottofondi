@@ -89,7 +89,7 @@ export default function ChiSiamo() {
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative h-[65vh] min-h-[450px] overflow-hidden bg-dark">
         <div className="absolute inset-0">
-          <img src={foto2} alt="Cantiere Caspani" className="w-full h-full object-cover opacity-50" />
+          <img src={foto2} alt="Cantiere Caspani" title="Chi Siamo - Caspani Pavimenti" loading="eager" width={1920} height={1080} className="w-full h-full object-cover opacity-50" />
           <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark" />
         </div>
 
@@ -133,7 +133,7 @@ export default function ChiSiamo() {
 
             <div className="lg:col-span-6 lg:col-start-7 relative">
               <div ref={storyImgRef} className="overflow-hidden w-full lg:w-[90%] aspect-[4/5]">
-                <img src={foto10} alt="Team al lavoro" className="w-full h-full object-cover" />
+                <img src={foto10} alt="Team al lavoro" title="Team Caspani Pavimenti al lavoro" loading="lazy" width={800} height={1000} className="w-full h-full object-cover" />
               </div>
               <div ref={storyImg2Ref} className="hidden md:flex absolute -bottom-12 -left-16 gap-4">
                 <div className="bg-white shadow-xl px-7 py-6 border-b-[3px] border-accent">
