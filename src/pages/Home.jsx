@@ -491,13 +491,12 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
           {/* Image — wider */}
           <div className="lg:col-span-5 relative min-h-[350px] lg:min-h-0">
-            <div ref={ctaImgRef} className="absolute inset-0">
-              <img
-                src={foto6}
-                alt="Cantiere Caspani"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              ref={ctaImgRef}
+              src={foto6}
+              alt="Cantiere Caspani"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
 
           {/* Content — offset */}
