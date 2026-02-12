@@ -178,22 +178,18 @@ export default function Home() {
       {/* ═══════════════ 2. CHI SIAMO — Broken grid ═══════════════ */}
       <section className="bg-cream pattern-tiles py-24 md:py-40 overflow-hidden">
         <div className="pad-x-lg">
-          {/* Heading — left aligned, wide */}
-          <div className="max-w-3xl mb-16 md:mb-24">
-            <span className="inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-5">
-              Chi Siamo
-            </span>
-            <h2
-              ref={aboutHeadingRef}
-              className="fluid-h1 font-heading font-bold text-dark"
-            >
-              Una tradizione di qualità nella posa
-            </h2>
-          </div>
-
           {/* Asymmetric layout: text left, images staggered right */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-start">
             <div ref={aboutTextRef} className="lg:col-span-5 lg:col-start-1 lg:pr-12">
+              <span className="inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-5">
+                Chi Siamo
+              </span>
+              <h2
+                ref={aboutHeadingRef}
+                className="fluid-h1 font-heading font-bold text-dark mb-8 md:mb-12"
+              >
+                Una tradizione di qualità nella posa
+              </h2>
               <p className="fluid-body-lg font-body text-muted leading-relaxed mb-6">
                 Da oltre vent&rsquo;anni, <strong className="text-dark">Caspani Pavimenti</strong> opera
                 con passione nel settore della vendita e posa di pavimenti e rivestimenti.
@@ -237,9 +233,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ 3. SERVIZI — Irregular grid ═══════════════ */}
+      {/* ═══════════════ 3. SERVIZI — Editorial layout ═══════════════ */}
       <section className="bg-dark pattern-blueprint-dark py-24 md:py-40 overflow-hidden">
         <div className="pad-x-lg">
+          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-24">
             <div className="max-w-xl">
               <span className="inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-5">
@@ -263,47 +260,94 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Broken service grid — different heights, widths */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
-            {/* Service 1 — large */}
-            <Link ref={service1Ref} to="/servizi" className="group md:col-span-7 relative overflow-hidden aspect-[16/10] md:aspect-auto md:h-[520px]">
-              <img src={foto7} alt="Posa Pavimenti e Rivestimenti" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <span className="font-heading font-bold text-[10px] uppercase tracking-[0.25em] text-accent block mb-3">01</span>
-                <h3 className="font-heading font-bold text-cream text-2xl md:text-3xl leading-tight mb-3">
-                  Posa Pavimenti<br />e Rivestimenti
-                </h3>
-                <p className="font-body text-cream/50 text-sm max-w-sm leading-relaxed hidden md:block">
-                  Posa professionale di ogni tipologia per interni ed esterni: ceramica, gres, legno, pietra naturale e marmo.
-                </p>
+          {/* Service list — typographic approach */}
+          <div className="border-t border-cream/10">
+            {/* Service 1 */}
+            <Link ref={service1Ref} to="/servizi" className="group block border-b border-cream/10 py-10 md:py-14">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+                <div className="md:col-span-1">
+                  <span className="font-heading font-bold text-accent text-sm tracking-wide">01</span>
+                </div>
+                <div className="md:col-span-5">
+                  <h3 className="font-heading font-bold text-cream text-2xl md:text-4xl lg:text-5xl leading-none group-hover:text-accent transition-colors duration-500">
+                    Posa Pavimenti e Rivestimenti
+                  </h3>
+                </div>
+                <div className="md:col-span-2 hidden md:flex justify-center">
+                  <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
+                    <img src={foto7} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="md:col-span-3">
+                  <p className="font-body text-cream/40 text-sm leading-relaxed">
+                    Ceramica, gres, legno, pietra naturale e marmo per interni ed esterni.
+                  </p>
+                </div>
+                <div className="md:col-span-1 hidden md:flex justify-end">
+                  <svg className="w-5 h-5 text-cream/20 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </div>
               </div>
             </Link>
 
-            {/* Service 2 + 3 stacked */}
-            <div className="md:col-span-5 flex flex-col gap-4 md:gap-5">
-              <Link ref={service2Ref} to="/servizi" className="group relative overflow-hidden aspect-[16/10] md:flex-1">
-                <img src={foto2} alt="Sottofondi e Massetti" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.25em] text-accent block mb-2">02</span>
-                  <h3 className="font-heading font-bold text-cream text-xl md:text-2xl leading-tight">
+            {/* Service 2 */}
+            <Link ref={service2Ref} to="/servizi" className="group block border-b border-cream/10 py-10 md:py-14">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+                <div className="md:col-span-1">
+                  <span className="font-heading font-bold text-accent text-sm tracking-wide">02</span>
+                </div>
+                <div className="md:col-span-5">
+                  <h3 className="font-heading font-bold text-cream text-2xl md:text-4xl lg:text-5xl leading-none group-hover:text-accent transition-colors duration-500">
                     Sottofondi e Massetti
                   </h3>
                 </div>
-              </Link>
+                <div className="md:col-span-2 hidden md:flex justify-center">
+                  <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
+                    <img src={foto2} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="md:col-span-3">
+                  <p className="font-body text-cream/40 text-sm leading-relaxed">
+                    Tradizionali e autolivellanti, con precisione millimetrica per ogni progetto.
+                  </p>
+                </div>
+                <div className="md:col-span-1 hidden md:flex justify-end">
+                  <svg className="w-5 h-5 text-cream/20 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
 
-              <Link ref={service3Ref} to="/servizi" className="group relative overflow-hidden aspect-[16/10] md:flex-1">
-                <img src={foto5} alt="Fornitura e Vendita" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.25em] text-accent block mb-2">03</span>
-                  <h3 className="font-heading font-bold text-cream text-xl md:text-2xl leading-tight">
+            {/* Service 3 */}
+            <Link ref={service3Ref} to="/servizi" className="group block py-10 md:py-14">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+                <div className="md:col-span-1">
+                  <span className="font-heading font-bold text-accent text-sm tracking-wide">03</span>
+                </div>
+                <div className="md:col-span-5">
+                  <h3 className="font-heading font-bold text-cream text-2xl md:text-4xl lg:text-5xl leading-none group-hover:text-accent transition-colors duration-500">
                     Fornitura e Vendita
                   </h3>
                 </div>
-              </Link>
-            </div>
+                <div className="md:col-span-2 hidden md:flex justify-center">
+                  <div className="w-[13rem] h-[9.5rem] overflow-hidden border-2 border-cream/10 group-hover:border-accent/40 transition-all duration-500 group-hover:scale-110">
+                    <img src={foto5} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="md:col-span-3">
+                  <p className="font-body text-cream/40 text-sm leading-relaxed">
+                    Ampia selezione dalle migliori aziende con consulenza personalizzata.
+                  </p>
+                </div>
+                <div className="md:col-span-1 hidden md:flex justify-end">
+                  <svg className="w-5 h-5 text-cream/20 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -340,10 +384,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ 5. GALLERIA — Organic grid ═══════════════ */}
-      <section className="bg-cream pattern-dots py-24 md:py-40 overflow-hidden">
-        <div className="pad-x-lg">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+      {/* ═══════════════ 5. GALLERIA — Full-width mosaic ═══════════════ */}
+      <section className="bg-cream pattern-dots overflow-hidden">
+        <div className="pad-x-lg pt-24 md:pt-40 pb-14 md:pb-20">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <span className="inline-block font-heading font-semibold text-[10px] uppercase tracking-[0.35em] text-accent mb-5">
                 Portfolio
@@ -365,28 +409,36 @@ export default function Home() {
               </svg>
             </Link>
           </div>
+        </div>
 
-          {/* Irregular gallery grid */}
-          <div className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-4">
-            <div ref={galleryImg1Ref} className="col-span-2 md:col-span-7 md:row-span-2 overflow-hidden aspect-[16/10] md:aspect-auto md:h-full group cursor-pointer">
-              <img src={foto8} alt="Posa pavimento bagno" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-            </div>
-            <div ref={galleryImg2Ref} className="col-span-1 md:col-span-5 overflow-hidden aspect-square md:aspect-auto md:h-[280px] group cursor-pointer">
-              <img src={foto10} alt="Cantiere posa" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-            </div>
-            <div ref={galleryImg3Ref} className="col-span-1 md:col-span-2 overflow-hidden aspect-square group cursor-pointer">
-              <img src={foto5} alt="Showroom" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-            </div>
-            <div ref={galleryImg4Ref} className="col-span-2 md:col-span-3 overflow-hidden aspect-[16/9] md:aspect-auto group cursor-pointer relative">
-              <img src={foto9} alt="Cantiere invernale" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-              <div className="absolute inset-0 bg-dark/30 group-hover:bg-dark/50 transition-colors duration-300 flex items-end p-5 md:p-6">
-                <Link
-                  to="/galleria"
-                  className="font-heading font-bold text-[11px] uppercase tracking-[0.15em] text-cream hover:text-accent transition-colors duration-300"
-                >
-                  Vedi tutti →
-                </Link>
-              </div>
+        {/* Full-width mosaic — top row 3, bottom row 2 */}
+        <div className="px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-1.5">
+          <div ref={galleryImg1Ref} className="overflow-hidden aspect-[16/10] group cursor-pointer">
+            <img src={foto8} alt="Posa pavimento bagno" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div ref={galleryImg2Ref} className="overflow-hidden aspect-[16/10] group cursor-pointer">
+            <img src={foto10} alt="Cantiere posa" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div ref={galleryImg3Ref} className="col-span-2 md:col-span-1 overflow-hidden aspect-[16/10] group cursor-pointer">
+            <img src={foto5} alt="Showroom" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+        </div>
+        <div className="px-4 md:px-8 grid grid-cols-2 gap-1 md:gap-1.5 mt-1 md:mt-1.5 pb-24 md:pb-40">
+          <div ref={galleryImg4Ref} className="overflow-hidden aspect-[16/9] group cursor-pointer">
+            <img src={foto9} alt="Cantiere invernale" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div className="overflow-hidden aspect-[16/9] group cursor-pointer relative">
+            <img src={foto2} alt="Massetto cantiere" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <div className="absolute inset-0 bg-dark/30 group-hover:bg-dark/50 transition-colors duration-300 flex items-center justify-center">
+              <Link
+                to="/galleria"
+                className="inline-flex items-center gap-3 font-heading font-bold text-[11px] uppercase tracking-[0.15em] text-cream hover:text-accent transition-colors duration-300"
+              >
+                Vedi tutti i lavori
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
